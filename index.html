@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICTECH • Letter Glitch Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+
+        /* Font and Button Layout */
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    height: 65px;
+    border-radius: 18px;
+    /* Other existing properties... */
+}
+
+/* Image Icon Box */
+.btn-icon-box {
+    width: 32px;
+    height: 32px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Maintain ratio */
+}
+
+/* Button Text Styling */
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.btn-label {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.btn-desc {
+    font-size: 9px;
+    opacity: 0.7;
+    margin-top: 2px;
+}
+        :root {
+            --electric: #2f7bff;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #050b18;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            overflow: hidden;
+        }
+
+        /* CARD */
+        .card {
+            position: relative;
+            width: min(380px, 92%);
+            height: 600px;
+            background: #0a0f1a;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden; /* Glitch-ai card-kulla lock pannum */
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+        }
+
+        /* LETTER GLITCH CANVAS */
+        #glitch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3; /* Subtle look-kaga opacity kammi pannirukan */
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(10, 15, 26, 0.1) 0%, rgba(10, 15, 26, 0.8) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* CONTENT */
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .logo-box {
+            width: 90px; height: 90px;
+            background: white; border-radius: 22px;
+            margin-bottom: 25px;
+            display: grid; place-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .logo-box img { width: 80%; height: 80%; object-fit: contain; }
+
+        .brand { font-size: 30px; letter-spacing: 4px; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { font-size: 10px; letter-spacing: 5px; opacity: 0.7; text-transform: uppercase; margin-bottom: 40px; }
+
+        .actions { width: 100%; display: grid; gap: 15px; }
+        .btn {
+            height: 58px; border-radius: 50px; text-decoration: none;
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; font-weight: bold; font-size: 14px; transition: 0.3s;
+            color: white; border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary { background: var(--electric); border: none; }
+        .btn:hover { transform: translateY(-3px); background: rgba(255,255,255,0.2); }
+
+        .footer { margin-top: 40px; font-size: 11px; opacity: 0.5; letter-spacing: 2px; }
+
+        #glitch-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.8; /* Ippo nalla bright-ah theriyum */
+}
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Letter Glitch Effect Background -->
+        <canvas id="glitch-canvas"></canvas>
+        <div class="overlay"></div>
+
+        <div class="content">
+            <div class="logo-box">
+                <img src="logo.png" alt="CT">
+            </div>
+
+            <h1 class="brand">CRITICTECH</h1>
+            <p class="subtitle">Digital Solutions</p>
+
+           <div class="actions">
+    <!-- FULL WIDTH CALL BUTTON -->
+    <a href="tel:+919962285028" class="btn btn-primary">
+        <div class="btn-icon-box">
+            <img src="phone.png" alt="">
+        </div>
+        <div class="btn-text">
+            <span class="btn-label">Call Us</span>
+            <span class="btn-desc">Instant Consultation</span>
+        </div>
+    </a>
+
+    <!-- HALF WIDTH WHATSAPP -->
+    <a href="https://wa.me/919962285028" class="btn">
+        <div class="btn-icon-box">
+            <img src="whatsapp.png" alt="">
+        </div>
+        <div class="btn-text">
+            <span class="btn-label">WhatsApp</span>
+            <span class="btn-desc">Chat Now</span>
+        </div>
+    </a>
+
+    <!-- HALF WIDTH WEBSITE -->
+    <a href="https://critictech.com" target="_blank" class="btn">
+        <div class="btn-icon-box">
+            <img src="logo-removebg-preview.png" alt="">
+        </div>
+        <div class="btn-text">
+            <span class="btn-label">Website</span>
+            <span class="btn-desc">Visit Us</span>
+        </div>
+    </a>
+</div>
+
+            <div class="footer">
+                © 2026 CRITICTECH
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // LETTER GLITCH JAVASCRIPT LOGIC
+        const canvas = document.getElementById('glitch-canvas');
+        const ctx = canvas.getContext('2d');
+        const card = document.querySelector('.card');
+
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*()+-=[]{}|;:,.<>?';
+        const glitchColors = ['#2b4539', '#61dca3', '#61b3dc', '#2f7bff'];
+        const fontSize = 16;
+        let columns, rows;
+        let letters = [];
+
+        function resize() {
+            canvas.width = card.offsetWidth;
+            canvas.height = card.offsetHeight;
+            columns = Math.ceil(canvas.width / fontSize);
+            rows = Math.ceil(canvas.height / fontSize);
+            
+            letters = [];
+            for (let i = 0; i < columns * rows; i++) {
+                letters.push({
+                    char: characters[Math.floor(Math.random() * characters.length)],
+                    color: glitchColors[Math.floor(Math.random() * glitchColors.length)],
+                    glitch: Math.random() < 0.05 // 5% chance to glitch initially
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = `${fontSize}px monospace`;
+            ctx.textBaseline = 'top';
+
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < columns; col++) {
+                    const index = row * columns + col;
+                    const letter = letters[index];
+
+                    // Randomly update characters based on glitch speed
+                    if (Math.random() < 0.02) {
+                        letter.char = characters[Math.floor(Math.random() * characters.length)];
+                        letter.color = glitchColors[Math.floor(Math.random() * glitchColors.length)];
+                    }
+
+                    ctx.fillStyle = letter.color;
+                    ctx.fillText(letter.char, col * fontSize, row * fontSize);
+                }
+            }
+        }
+
+        function animate() {
+            draw();
+            setTimeout(() => {
+                requestAnimationFrame(animate);
+            }, 50); // Glitch Speed Control
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+        
+    </script>
+
+    <style>
+
+        .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 8px; /* Gap-ai innum koraichurukan */
+    width: 100%;
+    margin-top: 25px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px; /* Padding reduced */
+    height: 60px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    overflow: hidden;
+    min-width: 0; 
+}
+
+/* Icon Box-ai innum chinna panniyachu (36px) */
+.btn-icon-box {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px; /* Gap minimized */
+    flex-shrink: 0;
+}
+
+.btn-icon-box img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    overflow: hidden; /* Safety overflow */
+}
+
+/* Font size adjusted for the word 'WHATSAPP' */
+.btn-label {
+    font-size: 10px; /* Safe size for side-by-side buttons */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    color: white;
+    white-space: nowrap;
+}
+
+.btn-desc {
+    font-size: 7px;
+    opacity: 0.6;
+    text-transform: uppercase;
+    margin-top: 1px;
+    white-space: nowrap;
+}
+
+
+
+.content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 40px 15px; /* Side padding-ai koraichurukan */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+    
+    
+    .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Column layout */
+    gap: 12px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+/* Call button row mattum full width */
+.btn-full {
+    grid-column: span 2;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    height: 65px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.btn-icon-box {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.btn-icon-box svg {
+    width: 22px;
+    height: 22px;
+    stroke: white; /* Icon color white */
+}
+
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    min-width: 0; /* Text overlap-ai thadukkum */
+}
+
+.btn-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
+/* Hover Effect */
+.btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}/* Container-ai Grid-ah mathurathaala side-by-side varum */
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Rendu column setup */
+    gap: 12px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* First button (Call Us) mattum full width-la iruka */
+.btn-primary {
+    grid-column: span 2; 
+    background: linear-gradient(135deg, #2f7bff 0%, #00f2ff 100%) !important;
+    border: none !important;
+}
+
+/* General Button Style (Matching your image) */
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Internal padding */
+    height: 70px; /* Image-la irukura maari height */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* Squared Icon Box (As seen in your image) */
+.btn-icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1); /* Glassy square */
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.btn-icon-box img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Text alignment inside button */
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: white;
+}
+
+.btn-label {
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-desc {
+    font-size: 8px;
+    opacity: 0.6;
+    text-transform: uppercase;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+}</style>
+</body>
+</html>
